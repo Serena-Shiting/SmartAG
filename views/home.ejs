@@ -1,0 +1,21 @@
+
+<%- include("partials/header") -%>
+<br>
+<br>
+<p>Wind Speed: <%= foundDatas.wind_speed %> m/s</p>
+<p>Gust: <%= foundDatas.gust %> m/s</p>
+<p>Temperature: <%= foundDatas.temperature %> Celsius</p>
+<p>Humidity: <%= foundDatas.humidity %> %RH</p>
+<p>UV_index: <%= foundDatas.UV_index %> UVI</p>
+<p>Hourly Rainfall: <%= foundDatas.hourly_rainfall %> mm</p>
+<%if(foundDatas.power === 0){ %>
+    <p>Power: on</p>
+<%}else{%>
+    <p>Power: off</p>
+<%}%>
+<div class="signal" >
+  <h5 style=dont-size:2px>Sensor Signal <img src = image/signal_5.png></h5>
+</div>
+
+
+</body>
