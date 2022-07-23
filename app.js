@@ -113,11 +113,18 @@ app.get("/soil", function(req, res) {
     }else if(typename.substring(0,2) === "01"){ //weather_data
       type = "$"+typename.substr(3)
       const tempDic = {};
+      console.log(type);
+      if(type == "$uv index"){
+        type = "$UV_index";
+      }else if(type == "$hourly rainfall"){
+        type = "$hourly_rainfall";
+      }
 
       //, min: { $minute: "$datetime"}
       //+ ("0" + found[i]._id.min).slice(-2).toString()
-      WeatherData.aggregate( [ { $group: { _id:{ day: { $dayOfYear: "$datetime"}, hour: { $hour: "$datetime"} }, avgtemp: { $avg: "$"+typename.substr(3) } } } ], function(err, found) {
+      WeatherData.aggregate( [ { $group: { _id:{ day: { $dayOfYear: "$datetime"}, hour: { $hour: "$datetime"} }, avgtemp: { $avg: type } } } ], function(err, found) {
         //get {day hour mins: avg of temperature}
+        console.log(found);
         for (var i = 0; i < found.length; i++) {
           const data = ("0" + found[i]._id.day).slice(-3).toString() + ("0" + found[i]._id.hour).slice(-2).toString()
           tempDic[data] = found[i].avgtemp
@@ -131,7 +138,7 @@ app.get("/soil", function(req, res) {
             return accumulator;
         }, {});
 
-        console.log(sortedDic);
+        // console.log(sortedDic);
         const timeList = Object.keys(sortedDic);
         const tempList = Object.values(sortedDic);
 
@@ -147,9 +154,33 @@ app.get("/soil", function(req, res) {
   });
 
 
-  app.get("/both", function(req, res) {
+  app.get("/uv", function(req, res) {
 
-      res.render("both");
+    SoilData.aggregate( [ { $group: { _id:{ day: { $dayOfYear: "$datetime"}, hour: { $hour: "$datetime"} }, avgtemp: { $avg: "$UV_index" } } } ], function(err, found) {
+      //get {day hour mins: avg of temperature}
+      for (var i = 0; i < found.length; i++) {
+        const data = ("0" + found[i]._id.day).slice(-3).toString() + ("0" + found[i]._id.hour).slice(-2).toString()
+        tempDic[data] = found[i].avgtemp
+      }
+
+      //sorted the dic by datetime
+      const sortedDic = Object.keys(tempDic)
+        .sort()
+        .reduce((accumulator, key) => {
+          accumulator[key] = tempDic[key];
+          return accumulator;
+      }, {});
+
+      const timeList = Object.keys(sortedDic);
+      const tempList = Object.values(sortedDic);
+
+      res.render("uv", {
+        timeList: timeList,
+        dataList: tempList,
+        datetype: "UV_index",
+        sensor: "Soil Sensor"
+      });
+    }) //end of aggregate
   });
 
 //For Deploying the website to Heroku

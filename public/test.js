@@ -89,7 +89,9 @@ function goChart(timeArr, dataArr){
                 maxValue = dotVal;
             }
         }
-        maxValue += 50;
+
+        maxValue += (maxValue*1.1);//最大值加50
+
         totalYNomber = 10;
         // 运动相关
         ctr = 1;
@@ -145,7 +147,7 @@ function goChart(timeArr, dataArr){
             var markerVal = timeArr[i].substring(3, 5);
             var xMarker = originX+i*dotSpace;
             var yMarker = originY+30;
-            ctx.fillText(markerVal, xMarker, yMarker, cSpace); // 文字
+            ctx.fillText(markerVal+":00", xMarker, yMarker, cSpace); // 文字
             if(i>0){
                 drawLine(xMarker, originY-2, xMarker, cMargin);
             }
