@@ -1,21 +1,36 @@
 
 <%- include("partials/header") -%>
 <br>
-<br>
+
+<div class="child" >
+<p>Wind direction: <%= foundDatas.wind_direction %> </p>
 <p>Wind Speed: <%= foundDatas.wind_speed %> m/s</p>
 <p>Gust: <%= foundDatas.gust %> m/s</p>
 <p>Temperature: <%= foundDatas.temperature %> Celsius</p>
 <p>Humidity: <%= foundDatas.humidity %> %RH</p>
 <p>UV_index: <%= foundDatas.UV_index %> UVI</p>
 <p>Hourly Rainfall: <%= foundDatas.hourly_rainfall %> mm</p>
+<p>Daily Rainfall: <%= foundDatas.daily_rainfall %> mm</p>
+<p>Total Rainfall: <%= foundDatas.total_rainfall %> mm</p>
+<p>Light intensity: <%= foundDatas.light_intensity %> Lux</p>
+<p>UV intensity: <%= foundDatas.UV_intensity %> uW/cm^2</p>
+<p>UV index: <%= foundDatas.UV_index %> UVI</p>
 <%if(foundDatas.power === 0){ %>
     <p>Power: on</p>
 <%}else{%>
     <p>Power: off</p>
 <%}%>
+<p>datetime: <%= foundDatas.datetime %></p>
+</div>
+
 <div class="signal" >
   <h5 style=dont-size:2px>Sensor Signal <img src = image/signal_5.png></h5>
 </div>
 
 
-</body>
+<div class="child"><h4>Line Chart:</h4></div>
+<div class="child"><a href="01humidity">humidity</a></div>
+<div class="child"><a href="01temperature">temperature</a></div>
+
+<script src="test.js" charset="utf-8"></script>
+<%- include("partials/footer") -%>

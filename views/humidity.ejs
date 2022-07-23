@@ -1,0 +1,22 @@
+<%- include("partials/header") -%>
+
+<p> <%= timeList %></p>
+<p> <%= dataList %> Line Chart</p>
+<input type="hidden" id="time" value="<%= timeList %>"></input>
+<input type="hidden" id="data" value="<%= dataList %>"></input>
+<input type="hidden" id="name" value="<%= datetype %>"></input>
+
+<br>
+<br>
+<div class="row">
+  <canvas id="chart" height="400" width="600" style="margin:50px"> canvas </canvas>
+  <script src="test.js" charset="utf-8"></script>
+
+  <script type="text/javascript">
+    goChart();
+  </script>
+
+</div>
+
+
+<%- include("partials/footer") -%>

@@ -1,8 +1,15 @@
 <%- include("partials/header") -%>
 
 <br>
-<br>
 <p>soil_data</p>
 <p>temperature: <%= foundDatas.temperature %></p>
 <p>humidity: <%= foundDatas.humidity %></p>
-</body>
+<p>datetime: <%= foundDatas.datetime %></p>
+<br>
+
+<div class="child"><h4>Line Chart:</h4></div>
+<div class="child"><a href="00humidity">humidity</a></div>
+<div class="child"><a href="00temperature">temperature</a></div>
+
+
+<%- include("partials/footer") -%>

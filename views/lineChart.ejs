@@ -1,0 +1,31 @@
+<%- include("partials/header") -%>
+
+  <h1><%= sensor %></h1>
+
+  <input type="hidden" id="time" value="<%= timeList %>"></input>
+  <input type="hidden" id="data" value="<%= dataList %>"></input>
+  <input type="hidden" id="name" value="<%= datetype %>"></input>
+
+  <div class="row">
+    <p> <%= datetype.charAt(0).toUpperCase() + datetype.slice(1); %> Line Chart</p>
+    <canvas id="chart" height="400" width="600" style="margin:10px"> canvas </canvas>
+    <script src="test.js" charset="utf-8"></script>
+
+    <script type="text/javascript">
+      goChart();
+    </script>
+
+  </div>
+
+  <% if(sensor == "Soil Sensor"){ %>
+    <a href="00humidity">humidity</a>
+    <a href="00temperature">temperature</a>
+  <%}else if(sensor == "Weather Sensor"){%>
+    <a href="01humidity">humidity</a>
+    <a href="01temperature">temperature</a>
+  <%}%>
+
+
+
+
+<%- include("partials/footer") -%>

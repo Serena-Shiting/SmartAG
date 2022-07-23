@@ -1,7 +1,7 @@
 html {
-  background-color: #E4E9FD;
+  background-color: #A683E3;
   /* background-image: conic-gradient( #A683E3 , #E4E9FD , powderblue); */
-  background-image: -webkit-linear-gradient(65deg, #A683E3 50%, #E4E9FD 50%);
+  /* background-image: -webkit-linear-gradient(65deg, #A683E3 50%, #E4E9FD 50%); */
   min-height: 1000px;
   font-family: 'helvetica neue';
 }
@@ -32,8 +32,8 @@ li a:hover {
 }
 
 .nav{
-
   background-color:  #E4E9FD;
+  padding: 1% 1% 4%;
 }
 
 .box {
@@ -119,4 +119,15 @@ footer {
   color: white;
   color: rgba(0, 0, 0, 0.5);
   text-align: center;
+}
+
+
+/* home */
+.child {
+    display: inline-block;
+}
+
+.rotateimg180 {
+  transform: rotate(90deg);
+
 }
